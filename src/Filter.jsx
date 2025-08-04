@@ -22,10 +22,8 @@ const items = [
 ];
 
 const Filter = () => {
-  // Step 2: State to store selected category
   const [category, setCategory] = useState("All");
 
-  // Step 3: Filter the items based on selected category
   const filteredItems =
     category === "All"
       ? items
