@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "todo-planner",
+=======
+  "name": "task-manager",
+>>>>>>> 40afa96 (1st commit)
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,9 +14,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@mui/material": "^7.2.0",
+=======
+>>>>>>> 40afa96 (1st commit)
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

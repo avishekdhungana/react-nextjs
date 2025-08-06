@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import {
   Container,
@@ -253,6 +254,23 @@ const App = () => {
         </Card>
       ))}
     </Container>
+=======
+import { useState } from "react";
+import LoginForm from "./LoginForm.jsx";         
+import TaskManager from "./TaskManager.jsx";     
+
+const App = () => {
+  const [loggedInUser, setLoggedInUser] = useState(null);
+
+  return (
+    <div style={{ padding: "20px" }}>
+      {loggedInUser ? (
+        <TaskManager username={loggedInUser} />
+      ) : (
+        <LoginForm onLogin={setLoggedInUser} />
+      )}
+    </div>
+>>>>>>> 40afa96 (1st commit)
   );
 };
 
