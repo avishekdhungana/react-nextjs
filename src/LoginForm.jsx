@@ -1,77 +1,67 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Typography,
-  TextField,
-  Button,
-  List,
-  ListItem,
-  ListItemText,
-  IconButton,
-  Paper,
-  Box,
-} from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Box, TextField, Button, Typography } from '@mui/material';
 
-const Todo = () => {
-  const [input, setInput] = useState("");
-  const [tasks, setTasks] = useState([]);
+const LoginForm = ({ onLogin }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-  const addTask = () => {
-    if (input.trim() === "") return;
-    setTasks([...tasks, input]);
-    setInput("");
-  };
-
-  const deleteTask = (index) => {
-    setTasks(tasks.filter((_, i) => i !== index));
-  };
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (username.trim() && password.trim()) {
+      console.log("username:", username);
+      console.log("password:", password);
+      onLogin(username);
+    } else {
+      alert("Please enter both username and password");
+    }
+  }
 
   return (
-    <Container maxWidth="sm" sx={{ mt: 5 }}>
-      <Paper elevation={3} sx={{ p: 4 }}>
-        <Typography variant="h4" align="center" gutterBottom>
-          📝 To-Do App
-        </Typography>
-
-        <Box display="flex" gap={2} mb={3}>
-          <TextField
-            label="Enter a task"
-            variant="outlined"
-            fullWidth
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => {
-              if (e.key === "Enter") addTask();
-            }}
-          />
-          <Button variant="contained" color="primary" onClick={addTask}>
-            Add
-          </Button>
-        </Box>
-
-        <List>
-          {tasks.map((task, index) => (
-            <ListItem
-              key={index}
-              secondaryAction={
-                <IconButton
-                  edge="end"
-                  aria-label="delete"
-                  onClick={() => deleteTask(index)}
-                >
-                  <DeleteIcon color="error" />
-                </IconButton>
-              }
-              divider
-            >
-              <ListItemText primary={task} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Container>
+    <Box
+      sx={{
+        height: "100vh",
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+          width: 300,
+          p: 3,
+          border: '1px solid #ccc',
+          borderRadius: 2,
+          boxShadow: 3,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Typography variant="h5" textAlign="center" mb={1}>Login</Typography>
+        <TextField
+          label="Username"
+          variant="outlined"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          fullWidth
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          fullWidth
+        />
+        <Button type="submit" variant="contained" color="primary" fullWidth>
+          Login
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
-export default Todo;
+export default LoginForm;
