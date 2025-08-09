@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from "react";
 import {
   Container,
@@ -280,3 +281,6 @@ const App = () => {
 };
 
 export default App;
+=======
+
+>>>>>>> a969eeb (new task)

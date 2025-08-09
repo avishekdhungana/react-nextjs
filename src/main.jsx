@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
@@ -20,3 +21,15 @@ createRoot(document.getElementById('root')).render(
 >>>>>>> 1645fa9 ('fixes')
   </StrictMode>,
 )
+=======
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import Newapp from './Newapp.jsx';
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Newapp />
+  </StrictMode>
+);
+>>>>>>> a969eeb (new task)
