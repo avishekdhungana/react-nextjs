@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Button, TextField, Typography, Box, List, ListItem, ListItemText } from "@mui/material";
 import { Delete, CheckCircle, ArrowForward } from "@mui/icons-material";
 import { Alert,AlertTitle } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+
 
 
 
@@ -34,7 +36,10 @@ const completetask =(task) => {
 
 return(
     <div>
+        
+
                 <Box component="section" sx={{ pt: 2, border: '1px dashed grey' }}>
+                    <h1>Task manager</h1>
                      <h2>Welcome,{username}</h2>
                      
 <TextField fullWidth label="Enter a task" id="enter a task"
@@ -47,15 +52,22 @@ return(
         <button variant ="contained" color ="secondary" onClick={addtask}>Addtask
 
         </button>
+        <TableContainer component={paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Newtask</TableCell>
+                         <TableCell>Action</TableCell>
+                    </TableRow>
+                </TableHead>
+            </Table>
 
-        <h3>new task</h3>
-
-        <ul>
+        <TableBody>
             <Alert severity="info">
   <AlertTitle>Info</AlertTitle>
   You have new task
 
-       {newtask.map((task,index)=>(
+     <TableRow key={index}
         <li key={index}>
         {task} 
         <button variant ="contained" color ="secondary" onClick={()=> moveprogress(task)}>moveinprogress</button>
@@ -67,7 +79,7 @@ return(
 
 </Alert>
 
-        </ul>
+        
       
 
                 <h3>In progress</h3>
