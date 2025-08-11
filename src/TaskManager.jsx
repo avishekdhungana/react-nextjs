@@ -1,65 +1,110 @@
-import { useState } from "react";
 
-const TaskManager = ({ username }) => {
-  const [taskInput, setTaskInput] = useState("");
-  const [newTasks, setNewTasks] = useState([]);
-  const [inProgressTasks, setInProgressTasks] = useState([]);
-  const [completedTasks, setCompletedTasks] = useState([]);
+import React, { useState } from "react";
+import { Button, TextField, Typography, Box, List, ListItem, ListItemText } from "@mui/material";
+import { Delete, CheckCircle, ArrowForward } from "@mui/icons-material";
+import { Alert,AlertTitle } from '@mui/material';
 
-  const addTask = () => {
-    if (taskInput.trim()) {
-      setNewTasks([...newTasks, taskInput]);
-      setTaskInput("");
+
+
+
+const TaskManager =({username}) =>{
+
+
+
+const [taskinput, Settaskinput] =useState("");
+const[newtask, Setnewtask] =useState([]);
+const[inprogres,Setinprogress]=useState([]);
+const[complete,Setcomplete]=useState([]);
+
+const addtask = () =>{
+    if(taskinput.trim()){
+        Setnewtask([...newtask, taskinput]);
+        Settaskinput("")
     }
-  };
+}
+const moveprogress = (task) =>{
+    Setnewtask(newtask.filter((t)=> t !==task));
+    Setinprogress([...inprogres,task])
 
-  const moveToInProgress = (task) => {
-    setNewTasks(newTasks.filter((t) => t !== task));
-    setInProgressTasks([...inProgressTasks, task]);
-  };
+}
+const completetask =(task) => {
+    Setinprogress(inprogres.filter((t)=>t!==task));
+    Setcomplete([...complete,task]);
+}
 
-  const moveToCompleted = (task) => {
-    setInProgressTasks(inProgressTasks.filter((t) => t !== task));
-    setCompletedTasks([...completedTasks, task]);
-  };
-
-  return (
+return(
     <div>
-      <h2>Welcome, {username}</h2>
-      <input
-        type="text"
-        placeholder="Add a task"
-        value={taskInput}
-        onChange={(e) => setTaskInput(e.target.value)}
-      />
-      <button onClick={addTask}>Add Task</button>
+                <Box component="section" sx={{ pt: 2, border: '1px dashed grey' }}>
+                     <h2>Welcome,{username}</h2>
+                     
+<TextField fullWidth label="Enter a task" id="enter a task"
 
-      <h3>New Tasks</h3>
-      <ul>
-        {newTasks.map((task, index) => (
-          <li key={index}>
-            {task} <button onClick={() => moveToInProgress(task)}>→ In Progress</button>
-          </li>
-        ))}
-      </ul>
+    
+        value={taskinput}
+        onChange={(e)=> Settaskinput(e.target.value)}
+        />
+        
+        <button variant ="contained" color ="secondary" onClick={addtask}>Addtask
 
-      <h3>In Progress</h3>
-      <ul>
-        {inProgressTasks.map((task, index) => (
-          <li key={index}>
-            {task} <button onClick={() => moveToCompleted(task)}>✔ Complete</button>
-          </li>
-        ))}
-      </ul>
+        </button>
 
-      <h3>Completed</h3>
-      <ul>
-        {completedTasks.map((task, index) => (
-          <li key={index}>{task}</li>
+        <h3>new task</h3>
+
+        <ul>
+            <Alert severity="info">
+  <AlertTitle>Info</AlertTitle>
+  You have new task
+
+       {newtask.map((task,index)=>(
+        <li key={index}>
+        {task} 
+        <button variant ="contained" color ="secondary" onClick={()=> moveprogress(task)}>moveinprogress</button>
+        </li>
+        
+       )
+    )
+}
+
+</Alert>
+
+        </ul>
+      
+
+                <h3>In progress</h3>
+
+
+        <ul>
+<Alert severity="warning">
+  <AlertTitle>Warning</AlertTitle>
+  complete your task in time.
+
+
+        {inprogres.map((task,index)=>(
+            <li key={index}>
+            {task} <button onClick={()=>  completetask(task)}>movetocomplete</button>
+            </li>
         ))}
-      </ul>
+        </Alert>
+    
+</ul>
+
+<Alert variant="filled" severity="success">
+  congraluation
+
+<h3>complete</h3>
+{complete.map((task,index)=>(
+    <li key={index}>
+    {task} <button variant ="contained" color ="secondary" onClick={()  => completetask(task)}>complete</button>
+    </li>
+)
+)}
+</Alert>
+</Box>
+
+
     </div>
-  );
-};
-
+)
+}
 export default TaskManager;
+
+

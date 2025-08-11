@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useState } from "react";
 import {
   Container,
@@ -256,6 +257,10 @@ const App = () => {
     </Container>
 =======
 import { useState } from "react";
+=======
+import React, { useState } from "react";
+
+>>>>>>> 26847e5 (next commit)
 import LoginForm from "./LoginForm.jsx";         
 import TaskManager from "./TaskManager.jsx";     
 
