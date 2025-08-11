@@ -1,122 +1,128 @@
-
 import React, { useState } from "react";
-import { Button, TextField, Typography, Box, List, ListItem, ListItemText } from "@mui/material";
-import { Delete, CheckCircle, ArrowForward } from "@mui/icons-material";
-import { Alert,AlertTitle } from '@mui/material';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import {
+  Box,
+  TextField,
+  Button,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography
+} from "@mui/material";
 
+const TaskManager = ({ username }) => {
+  const [taskinput, Settaskinput] = useState("");
+  const [newtask, Setnewtask] = useState([]);
+  const [inprogress, Setinprogress] = useState([]);
+  const [complete, Setcomplete] = useState([]);
 
-
-
-
-const TaskManager =({username}) =>{
-
-
-
-const [taskinput, Settaskinput] =useState("");
-const[newtask, Setnewtask] =useState([]);
-const[inprogres,Setinprogress]=useState([]);
-const[complete,Setcomplete]=useState([]);
-
-const addtask = () =>{
-    if(taskinput.trim()){
-        Setnewtask([...newtask, taskinput]);
-        Settaskinput("")
+  const addtask = () => {
+    if (taskinput.trim()) {
+      Setnewtask([...newtask, taskinput]);
+      Settaskinput("");
     }
-}
-const moveprogress = (task) =>{
-    Setnewtask(newtask.filter((t)=> t !==task));
-    Setinprogress([...inprogres,task])
+  };
 
-}
-const completetask =(task) => {
-    Setinprogress(inprogres.filter((t)=>t!==task));
-    Setcomplete([...complete,task]);
-}
+  const moveprogress = (task) => {
+    Setnewtask(newtask.filter((t) => t !== task));
+    Setinprogress([...inprogress, task]);
+  };
 
-return(
-    <div>
-        
+  const completetask = (task) => {
+    Setinprogress(inprogress.filter((t) => t !== task));
+    Setcomplete([...complete, task]);
+  };
 
-                <Box component="section" sx={{ pt: 2, border: '1px dashed grey' }}>
-                    <h1>Task manager</h1>
-                     <h2>Welcome,{username}</h2>
-                     
-<TextField fullWidth label="Enter a task" id="enter a task"
+  return (
+    <Box sx={{ p: 3, minHeight: "100vh", bgcolor: "#f5f5f5" }}>
+      <Typography variant="h4" gutterBottom align="center">
+        Task Manager
+      </Typography>
+      <Typography variant="h6" align="center" gutterBottom>
+        Welcome, {username}
+      </Typography>
 
-    
-        value={taskinput}
-        onChange={(e)=> Settaskinput(e.target.value)}
+      {/* Input */}
+      <Box sx={{ display: "flex", gap: 2, mt: 2, mb: 3, maxWidth: "600px", mx: "auto" }}>
+        <TextField
+          fullWidth
+          label="Enter a task"
+          value={taskinput}
+          onChange={(e) => Settaskinput(e.target.value)}
         />
-        
-        <button variant ="contained" color ="secondary" onClick={addtask}>Addtask
+        <Button variant="contained" color="secondary" onClick={addtask}>
+          Add
+        </Button>
+      </Box>
 
-        </button>
-        <TableContainer component={paper}>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Newtask</TableCell>
-                         <TableCell>Action</TableCell>
-                    </TableRow>
-                </TableHead>
-            </Table>
+      {/* Column Titles */}
+      <Box sx={{ display: "flex", justifyContent: "space-around", mb: 1 }}>
+        <Typography variant="h6" color="primary">
+          New Tasks
+        </Typography>
+        <Typography variant="h6" color="warning.main">
+          In Progress
+        </Typography>
+        <Typography variant="h6" color="success.main">
+          Completed
+        </Typography>
+      </Box>
 
-        <TableBody>
-            <Alert severity="info">
-  <AlertTitle>Info</AlertTitle>
-  You have new task
+      {/* Full Width Table */}
+      <TableContainer component={Paper} sx={{ width: "100%", maxWidth: "100%", mx: "auto" }}>
+        <Table>
+          <TableBody>
+            {Array.from(
+              { length: Math.max(newtask.length, inprogress.length, complete.length) },
+              (_, index) => (
+                <TableRow key={index}>
+                  {/* New Tasks Column */}
+                  <TableCell sx={{ width: "33%" }}>
+                    {newtask[index] && (
+                      <>
+                        {newtask[index]}
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => moveprogress(newtask[index])}
+                          sx={{ ml: 1 }}
+                        >
+                          →
+                        </Button>
+                      </>
+                    )}
+                  </TableCell>
 
-     <TableRow key={index}
-        <li key={index}>
-        {task} 
-        <button variant ="contained" color ="secondary" onClick={()=> moveprogress(task)}>moveinprogress</button>
-        </li>
-        
-       )
-    )
-}
+                  {/* In Progress Column */}
+                  <TableCell sx={{ width: "33%" }}>
+                    {inprogress[index] && (
+                      <>
+                        {inprogress[index]}
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          onClick={() => completetask(inprogress[index])}
+                          sx={{ ml: 1 }}
+                        >
+                          ✓
+                        </Button>
+                      </>
+                    )}
+                  </TableCell>
 
-</Alert>
+                  {/* Completed Column */}
+                  <TableCell sx={{ width: "33%" }}>{complete[index] || ""}</TableCell>
+                </TableRow>
+              )
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+};
 
-        
-      
-
-                <h3>In progress</h3>
-
-
-        <ul>
-<Alert severity="warning">
-  <AlertTitle>Warning</AlertTitle>
-  complete your task in time.
-
-
-        {inprogres.map((task,index)=>(
-            <li key={index}>
-            {task} <button onClick={()=>  completetask(task)}>movetocomplete</button>
-            </li>
-        ))}
-        </Alert>
-    
-</ul>
-
-<Alert variant="filled" severity="success">
-  congraluation
-
-<h3>complete</h3>
-{complete.map((task,index)=>(
-    <li key={index}>
-    {task} <button variant ="contained" color ="secondary" onClick={()  => completetask(task)}>complete</button>
-    </li>
-)
-)}
-</Alert>
-</Box>
-
-
-    </div>
-)
-}
 export default TaskManager;
-
-
