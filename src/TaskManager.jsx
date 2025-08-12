@@ -1,66 +1,67 @@
-
 import React, { useState } from "react";
-import { Button, TextField, Typography, Box, List, ListItem, ListItemText } from "@mui/material";
-import { Delete, CheckCircle, ArrowForward } from "@mui/icons-material";
-import { Alert,AlertTitle } from '@mui/material';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
+import { Button, TextField, Typography, Box } from "@mui/material";
+import TaskTable from "./TaskTable";
 
+const TaskManager = ({ username }) => {
+  const [taskinput, Settaskinput] = useState("");
+  const [newtask, Setnewtask] = useState([]);
+  const [inprogress, Setinprogress] = useState([]);
+  const [complete, Setcomplete] = useState([]);
 
-
-
-
-const TaskManager =({username}) =>{
-
-
-
-const [taskinput, Settaskinput] =useState("");
-const[newtask, Setnewtask] =useState([]);
-const[inprogres,Setinprogress]=useState([]);
-const[complete,Setcomplete]=useState([]);
-
-const addtask = () =>{
-    if(taskinput.trim()){
-        Setnewtask([...newtask, taskinput]);
-        Settaskinput("")
+  const addtask = () => {
+    if (taskinput.trim()) {
+      Setnewtask([...newtask, taskinput]);
+      Settaskinput("");
     }
-}
-const moveprogress = (task) =>{
-    Setnewtask(newtask.filter((t)=> t !==task));
-    Setinprogress([...inprogres,task])
+  };
 
-}
-const completetask =(task) => {
-    Setinprogress(inprogres.filter((t)=>t!==task));
-    Setcomplete([...complete,task]);
-}
+  const moveprogress = (task) => {
+    Setnewtask(newtask.filter((t) => t !== task));
+    Setinprogress([...inprogress, task]);
+  };
 
-return(
-    <TaskManagerWrapper>
-        <Typography variant="h4" align="center">Task Manager</Typography>
-        <Typography variant="h6" align="center">Welcome,{username}</Typography>
-<TextField 
-fullWidth
-label="enter a task"
-value={taskinput}
-onChange={(e)=>  Settaskinput(e.target.value)}
-/>
-<Button variant="contained" color="secondary" onclick={addtask}>
+  const completetask = (task) => {
+    Setinprogress(inprogress.filter((t) => t !== task));
+    Setcomplete([...complete, task]);
+  };
 
-</Button>
-<TaskTable
-newtask={newtask}
-inprogres={inprogres}
-complete={complete}
-moveprogress={moveprogress}
-completetask={completetask}
-/>
+  return (
+    <Box
+      sx={{
+        maxWidth: 800,
+        margin: "0 auto",
+        padding: 3,
+        display: "flex",
+        flexDirection: "column",
+        gap: 2, 
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h4" align="center">
+        Task Manager
+      </Typography>
+      <Typography variant="h6" align="center">
+        Welcome, {username}
+      </Typography>
+      <TextField
+        fullWidth
+        label="Enter a task"
+        value={taskinput}
+        onChange={(e) => Settaskinput(e.target.value)}
+      />
+      <Button variant="contained" color="secondary" onClick={addtask}>
+        Add Task
+      </Button>
+      <TaskTable
+        newtask={newtask}
+        inprogress={inprogress}
+        complete={complete}
+        moveprogress={moveprogress}
+        completetask={completetask}
+      />
+    </Box>
+  );
+};
 
-
-
-
-    </TaskManagerWrapper>
-
-)}
 export default TaskManager;
-
 
