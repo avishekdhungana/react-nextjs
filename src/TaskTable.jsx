@@ -32,7 +32,7 @@ import { CheckCircle, ArrowForward } from "@mui/icons-material";
                   onClick={() => moveprogress(task)} 
                   startIcon={<ArrowForward />}
                 >
-                  Move to Progress
+                  progress
                 </Button>
               </TableCell>
             </TableRow>

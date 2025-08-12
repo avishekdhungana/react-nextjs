@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import TaskTable from "./TaskTable";
+import Taskpiechart from "./Taskpiechart";
 
 const TaskManager = ({ username }) => {
   const [taskinput, Settaskinput] = useState("");
@@ -48,6 +49,11 @@ const TaskManager = ({ username }) => {
         label="Enter a task"
         value={taskinput}
         onChange={(e) => Settaskinput(e.target.value)}
+      />
+      <Taskpiechart
+      newCount={newtask.length}
+      inprogressCount={inprogress.length}
+      completeCount={complete.length}
       />
       <Button variant="contained" color="secondary" onClick={addtask}>
         Add Task
