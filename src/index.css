@@ -24,14 +24,15 @@ a:hover {
 
 body {
   margin: 0;
+  padding: 0;              /* Add padding 0 to remove default */
+  width: 100vw;            /* Full viewport width */
+  height: 100vh;           /* Full viewport height */
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-  justify-content: center;
-align-items: center;
+  justify-content: center; /* Horizontal center */
+  align-items: center;     /* Vertical center */
+  min-width: 320px;        /* Minimum width to avoid too small */
+  box-sizing: border-box;  /* Include padding/border in size */
 }
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -67,4 +68,10 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0; /* or your preferred bg color */
 }

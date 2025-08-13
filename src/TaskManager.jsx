@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import TaskTable from "./TaskTable";
-import Taskpiechart from "./Taskpiechart";
+import Taskpiechart from "./TaskPieChart";
+
 
 const TaskManager = ({ username }) => {
   const [taskinput, Settaskinput] = useState("");
@@ -27,15 +28,20 @@ const TaskManager = ({ username }) => {
   };
 
   return (
+        
+
     <Box
       sx={{
-        maxWidth: 800,
+                backgroundColor: "#f0f0f0",  // 🌈 Your background color
+
+        maxWidth: "1200px",
         margin: "0 auto",
         padding: 3,
         display: "flex",
         flexDirection: "column",
-        gap: 2, 
+        gap: 4, 
         alignItems: "center",
+        
       }}
     >
       <Typography variant="h4" align="center">
@@ -49,15 +55,20 @@ const TaskManager = ({ username }) => {
         label="Enter a task"
         value={taskinput}
         onChange={(e) => Settaskinput(e.target.value)}
+  
       />
-      <Taskpiechart
+      
+ 
+      <Button variant="contained" color="secondary" onClick={addtask}>
+        Add Task
+      </Button>
+      
+      
+           <Taskpiechart
       newCount={newtask.length}
       inprogressCount={inprogress.length}
       completeCount={complete.length}
       />
-      <Button variant="contained" color="secondary" onClick={addtask}>
-        Add Task
-      </Button>
       <TaskTable
         newtask={newtask}
         inprogress={inprogress}
@@ -65,7 +76,10 @@ const TaskManager = ({ username }) => {
         moveprogress={moveprogress}
         completetask={completetask}
       />
+
+    
     </Box>
+   
   );
 };
 

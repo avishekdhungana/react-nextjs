@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Box, TextField, Button, Typography } from '@mui/material';
 
+
 const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (username === "hari" && password === "123") {
     if (username.trim() && password.trim()) {
       console.log("username:", username);
       console.log("password:", password);
       onLogin(username);
+    }
     } else {
       alert("Please enter both username and password");
     }
