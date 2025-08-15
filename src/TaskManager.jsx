@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Button, TextField, Typography, Box } from "@mui/material";
 import TaskTable from "./TaskTable";
 import Taskpiechart from "./TaskPieChart";
+import {  Grid,  Paper,} from "@mui/material";
+
 
 
 const TaskManager = ({ username }) => {
@@ -9,6 +12,27 @@ const TaskManager = ({ username }) => {
   const [newtask, Setnewtask] = useState([]);
   const [inprogress, Setinprogress] = useState([]);
   const [complete, Setcomplete] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+const fetchMockTasks = () => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        newtask: ["Design homepage", "Setup database"],
+        inprogress: ["Build API"],
+        complete: ["Project setup"],
+      });
+    }, 1000); // simulate 1-second delay
+  });
+};
+ useEffect(() => {
+    fetchMockTasks().then((data) => {
+      Setnewtask(data.newtask);
+      Setinprogress(data.inprogress);
+      Setcomplete(data.complete);
+      setLoading(false);
+    });
+  }, []);
 
   const addtask = () => {
     if (taskinput.trim()) {
@@ -26,6 +50,9 @@ const TaskManager = ({ username }) => {
     Setinprogress(inprogress.filter((t) => t !== task));
     Setcomplete([...complete, task]);
   };
+    if (loading) {
+    return <Typography align="center">Loading tasks...</Typography>;
+  }
 
   return (
         
@@ -69,6 +96,10 @@ const TaskManager = ({ username }) => {
       inprogressCount={inprogress.length}
       completeCount={complete.length}
       />
+      <Grid container spacing ={3}>
+        <Grid item xs={12} md={8}> </Grid>
+                  <Paper sx={{ p: 2, borderRadius: 3, boxShadow: 4 }}>
+
       <TaskTable
         newtask={newtask}
         inprogress={inprogress}
@@ -76,7 +107,9 @@ const TaskManager = ({ username }) => {
         moveprogress={moveprogress}
         completetask={completetask}
       />
-
+      
+      </Paper>
+</Grid>
     
     </Box>
    

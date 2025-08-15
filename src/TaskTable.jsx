@@ -14,15 +14,16 @@ import { CheckCircle, ArrowForward } from "@mui/icons-material";
  const TaskTable = ({ newtask, inprogress, complete, moveprogress, completetask }) => {
   return (
 
+
       <Paper sx={{ flex: 2, p: 2, overflowX: "auto" }}>
 
     <TableContainer component={Paper}>
       <Table>
-        <TableHead>
+        <TableHead sx={{ backgroundColor: "#1976d2" }}>
           <TableRow>
-            <TableCell ><b>Task</b></TableCell>
-            <TableCell><b>Move To Progress</b></TableCell>
-            <TableCell><b> Complete</b></TableCell>
+            <TableCell sx={{ color: "#fff", fontWeight: "bold" }}><b>Task</b></TableCell>
+            <TableCell sx={{ color: "#fff", fontWeight: "bold" }}><b>Move To Progress</b></TableCell>
+            <TableCell sx={{ color: "#fff", fontWeight: "bold" }}><b> Complete</b></TableCell>
           </TableRow>
         </TableHead>
 
@@ -30,7 +31,12 @@ import { CheckCircle, ArrowForward } from "@mui/icons-material";
             
           {newtask.map((task, index) => (
             <TableRow key={index}
-                      sx={{ backgroundColor: "#e3f2fd" }}
+                      sx={{
+                         backgroundColor: "#e3f2fd" ,
+                         "&:hover": { backgroundColor: "#bbdefb" },
+                  transition: "0.3s",
+                }}
+                        
 
             >
               <TableCell>{task}</TableCell>
