@@ -4,6 +4,8 @@ import { Button, TextField, Typography, Box } from "@mui/material";
 import TaskTable from "./TaskTable";
 import Taskpiechart from "./TaskPieChart";
 import {  Grid,  Paper,} from "@mui/material";
+import { fetchTasks, addTask, updateTask } from "./MockAPI";
+
 
 
 
@@ -25,6 +27,13 @@ const fetchMockTasks = () => {
     }, 1000); // simulate 1-second delay
   });
 };
+  useEffect(() => {
+    fetchTasks()
+      .then((data) => Setnewtask(data))
+      .catch((err) => console.error(err))
+      .finally(() => setLoading(false));
+  }, []);
+
  useEffect(() => {
     fetchMockTasks().then((data) => {
       Setnewtask(data.newtask);
