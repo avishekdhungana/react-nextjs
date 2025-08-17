@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "name": "todo-planner",
-=======
   "name": "task-manager",
->>>>>>> 40afa96 (1st commit)
   "private": true,
   "version": "0.0.0",
   "type": "module",
