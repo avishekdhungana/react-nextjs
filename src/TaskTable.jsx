@@ -17,7 +17,7 @@ import { CheckCircle, ArrowForward } from "@mui/icons-material";
 
       <Paper sx={{ flex: 2, p: 2, overflowX: "auto" }}>
 
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{ backgroundColor: "#569be6ff" }}>
       <Table>
         <TableHead sx={{ backgroundColor: "#1976d2" }}>
           <TableRow>
@@ -32,7 +32,7 @@ import { CheckCircle, ArrowForward } from "@mui/icons-material";
           {newtask.map((task, index) => (
             <TableRow key={index}
                       sx={{
-                         backgroundColor: "#e3f2fd" ,
+                         backgroundColor: "#0c85dcff" ,
                          "&:hover": { backgroundColor: "#bbdefb" },
                   transition: "0.3s",
                 }}

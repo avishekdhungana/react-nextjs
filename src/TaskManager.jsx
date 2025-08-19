@@ -24,7 +24,7 @@ const fetchMockTasks = () => {
         inprogress: ["Build API"],
         complete: ["Project setup"],
       });
-    }, 1000); // simulate 1-second delay
+    }, 1000); 
   });
 };
   useEffect(() => {
@@ -67,23 +67,33 @@ const fetchMockTasks = () => {
         
 
     <Box
-      sx={{
-                backgroundColor: "#f0f0f0",  // 🌈 Your background color
-
-        maxWidth: "1200px",
-        margin: "0 auto",
-        padding: 3,
-        display: "flex",
-        flexDirection: "column",
-        gap: 4, 
-        alignItems: "center",
-        
-      }}
+     sx={{
+    backgroundColor: "#ffffff",
+    width: "100%",       
+    height: "100%",      
+    margin: 0,
+    padding: 3,
+    display: "flex",
+    flexDirection: "column",
+    gap: 4,
+    alignItems: "center",
+  }}
     >
-      <Typography variant="h4" align="center">
+      <Typography variant="h3" align="center"
+      
+        
+        sx={{
+          fontWeight: 600,
+          color: "primary.main",
+          textAlign: "center",
+          mb: 1,
+          textShadow: "1px 1px 2px rgba(0,0,0,0.1)",
+        }}
+      >
         Task Manager
       </Typography>
-      <Typography variant="h6" align="center">
+      <Typography variant="h6" align="center"
+      sx={{ color: "text.secondary", mb: 3 }}>
         Welcome, {username}
       </Typography>
       <TextField
