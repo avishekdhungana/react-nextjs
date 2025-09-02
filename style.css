@@ -1,0 +1,92 @@
+body{
+font-family: Arial, Helvetica, sans-serif;
+background-color: #a4195a;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+.form{
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(33, 157, 54, 0);
+    width: 100%;
+    max-width: 400px;
+}
+h2{
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.group{
+    margin-bottom: 20px;
+    position: relative;
+
+}
+
+label{
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+
+
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+
+
+}
+
+.error{
+    font-size: 12px;
+    margin-top: 5px;
+    color:#a4195a
+
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.success{
+    color: #28a745;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.successMessage {
+    color: #28a745;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    display: none;
+}
+.success-message {
+    animation: fadeIn 1s;
+}
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
